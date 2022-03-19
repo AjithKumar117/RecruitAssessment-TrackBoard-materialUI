@@ -2,6 +2,7 @@ import React, { useState ,useEffect} from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
 
+//Default Values for cards
 const itemsFromBackend = [
     { id: uuid(), FullName: "Ajith", PhoneNumber: "1111111" ,EmailID:"ajith@mail.com"},
     { id: uuid(), FullName: "Kumar", PhoneNumber: "222222" ,EmailID:"cheenu@mail.com"},
@@ -27,7 +28,6 @@ const columnsFromBackend = {
 };
 
 const onDragEnd = (result, columns, setColumns) => {
-    debugger
     if (!result.destination) return;
     const { source, destination } = result;
 
@@ -50,7 +50,6 @@ const onDragEnd = (result, columns, setColumns) => {
             }
         });
     } else {
-        debugger
         const column = columns[source.droppableId];
         const copiedItems = [...column.items];
         const [removed] = copiedItems.splice(source.index, 1);
