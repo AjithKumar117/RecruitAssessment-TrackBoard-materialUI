@@ -1,8 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
-import Button from '@mui/material/Button';
-import EditIcon from '@mui/icons-material/Edit';
 
 const itemsFromBackend = [
     { id: uuid(), FullName: "Ajith", PhoneNumber: "1111111" ,EmailID:"ajith@mail.com"},
@@ -54,8 +52,8 @@ const onDragEnd = (result, columns, setColumns) => {
         });
     } else {
         debugger
-        const column = columns[source.droppableId];//const column = columns[1];
-        const copiedItems = [...column.items];//const copiedItems = [...column.items];
+        const column = columns[source.droppableId];
+        const copiedItems = [...column.items];
         const [removed] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removed);
         setColumns({
@@ -72,25 +70,17 @@ export default function KanbanBoard(props) {
 
     const [columns, setColumns] = useState(columnsFromBackend);
     const [currentData,setcurrentData] = useState(null);
-    const [Editdata,setEditdata] = useState(null); 
-
-    const openDialog=(Data)=>{
-        debugger
-        setEditdata(Data)
-    }
 
     useEffect(()=>{
         if(props.CandidateData){
             let arr = [];
             let candi = props.CandidateData;
-            arr = {id: uuid(), FullName:candi.fullName, PhoneNumber:candi.PhoneNumber,EmailID:candi.EmailID}
-            itemsFromBackend.push(arr);
+            arr = {id: uuid(), FullName:candi.fullName, PhoneNumber:candi.PhoneNumber,EmailID:candi.emailID}
             const AppliedCandidate = columns[1].items;
             AppliedCandidate.push(arr)
             setcurrentData(candi)
         }
     },[props.CandidateData])
-
 
     return (
         <div>
@@ -135,8 +125,7 @@ export default function KanbanBoard(props) {
                                                                 >
                                                                 {(provided, snapshot) => {
                                                                     return (
-                                                                        <div       
-                                                                           // onClick={openDialog(column.items, index)}                                                                     
+                                                                        <div                                                                          
                                                                             ref={provided.innerRef}
                                                                             {...provided.draggableProps}
                                                                             {...provided.dragHandleProps}
@@ -155,7 +144,6 @@ export default function KanbanBoard(props) {
                                                                             <span style={{fontWeight:"bold","text-decoration":"underline"}}>Name: {item.FullName}</span><br />
                                                                             <span style={{fontSize:"11px"}}>Phone No: {item.PhoneNumber}</span><br />
                                                                             <span style={{fontSize:"11px"}}>Email ID: {item.EmailID}</span>
-                                                                           <Button style={{color:"white",paddingLeft:"50px"}} onClick={()=>openDialog(column.items[index])}  > <EditIcon/></Button>
                                                                         </div>
                                                                     );
                                                                 }}

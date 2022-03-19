@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 }})
 
 export default function DashBoard(props){
-  debugger
   const classes = useStyles();
   const [dialogBoxFlag, setdialogBoxFlag] = useState(false);
   const [scroll] = React.useState('paper');
@@ -38,7 +37,7 @@ export default function DashBoard(props){
   const onCandidatechange=(value)=>{
     setIncomeData(value)
   }
-  
+
   return (
     <div>
       <AppBaTopNavBarr />
@@ -57,14 +56,14 @@ export default function DashBoard(props){
       <Dialog maxWidth="lg" open={dialogBoxFlag}>
         <DialogContent id="classic-modal-slide-description"
           dividers={scroll === 'paper'}>
-          <AddCandidate onCandidatechange={onCandidatechange} openDialog={props.openDialog}/>
+          <AddCandidate onCandidatechange={onCandidatechange} openDialog={props.openDialog} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={AddCandi} className={classes.classes} variant="outlined">Add</Button>
+          <Button onClick={AddCandi} variant="outlined">Add</Button>
           <Button onClick={() => { setdialogBoxFlag(false) }} variant="outlined">Close</Button>
         </DialogActions>
       </Dialog>
-      <KanbanBoard CandidateData={CandiData}/>
+      <KanbanBoard CandidateData={CandiData} />
     </div>
   );
 }
