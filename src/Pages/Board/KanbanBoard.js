@@ -4,8 +4,7 @@ import { v4 as uuid } from "uuid";
 
 const itemsFromBackend = [
     { id: uuid(), FullName: "Ajith", PhoneNumber: "1111111" ,EmailID:"ajith@mail.com"},
-    { id: uuid(), FullName: "Cheenu", PhoneNumber: "222222" ,EmailID:"cheenu@mail.com"},
-    { id: uuid(), FullName: "Prithvi", PhoneNumber: "3333333" ,EmailID:"prithvi@mail.com"},
+    { id: uuid(), FullName: "Kumar", PhoneNumber: "222222" ,EmailID:"cheenu@mail.com"},
 ];
 
 const columnsFromBackend = {
